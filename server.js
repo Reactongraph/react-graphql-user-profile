@@ -26,7 +26,8 @@ import resolvers from './resolvers.js'
 
 //This is middleware
 const context = ({req})=>{
-  const authorization = req.body.variables.authorization
+  const authorization = req.headers.authorization
+  console.log('authorization_backend',authorization);
   if(authorization) {
     const {userId} = jwt.verify(authorization,JWT_SECRET)
     return {userId}

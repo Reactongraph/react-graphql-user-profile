@@ -47,7 +47,7 @@ query getQuoteBy($quoteId:ID!){
 }
 ---------------------------------
 mutation createUser($userNew:UserInput!){
-  user:signUpUserDummy(userNew:$userNew) {
+  user:signUpUser(userNew:$userNew) {
     _id
     email
     firstName

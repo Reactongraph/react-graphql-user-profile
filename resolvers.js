@@ -13,7 +13,11 @@ const resolvers = {
         users:async () => await User.find({}),
         user:async (_,{_id}) =>await User.findOne({_id}),
         quotes:async () => await Quote.find({}).populate("by","_id, firstName"),
-        quote:async (_,{by}) => await Quote.find({by})
+        quote:async (_,{by}) => await Quote.find({by}),
+        myprofile:async (_,args,{userId})=> {
+            if(!userId) throw new Error("you have to logedin")
+            return await User.findOne({_id:userId})
+        }
     },
     User: {
         quotes:async(ur) => await Quote.find({by:ur._id})
